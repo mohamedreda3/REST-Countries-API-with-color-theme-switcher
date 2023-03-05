@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>REST Countries API with color theme switcher</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h2>Where In The World ?</h2>
+            <div class="switch-theme">
+                <!-- <span class="iconify" data-icon="ph:moon-stars-duotone"></span> -->
+                <span class="iconify" data-icon=""></span>
+                <span id="current-theme">Dark Mode</span>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="inputs">
+            <div class="input">
+                <label for="search">
+                    <span class="iconify" data-icon="ic:outline-search"></span>
+                </label>
+                <input type="search" id="search" placeholder="Search for a country">
+            </div>
+            <div class="filter">
+                <div class="subtitle">
+                    <span id="current-filter">Filter by Region</span>
+                    <span class="iconify" data-icon="material-symbols:arrow-circle-down-outline-rounded"></span>
+                </div>
+                <div class="filters">
+                    <span data-filter="Africa">Africa</span>
+                    <span data-filter="Americas">Americas</span>
+                    <span data-filter="Asia">Asia</span>
+                    <span data-filter="Europe">Europe</span>
+                    <span data-filter="Oceania">Oceania</span>
+                </div>
+            </div>
+        </div>
+        <div class="contries">
+
+        </div>
+    </main>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <script src="main.js"></script>
+    <script src="./mainPage.js"></script>
+</body>
+
+</html>

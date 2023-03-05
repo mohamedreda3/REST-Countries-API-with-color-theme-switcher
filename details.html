@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+        integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Country Detail</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h2>Where In The World ?</h2>
+            <div class="switch-theme">
+                <!-- <span class="iconify" data-icon="ph:moon-stars-duotone"></span> -->
+                <span class="iconify" data-icon=""></span>
+                <span id="current-theme">Dark Mode</span>
+            </div>
+        </nav>
+    </header>
+    <main></main>
+
+    <script src="./main.js"></script>
+    <script>
+        let numericCode = new URLSearchParams(window.location.search);
+        numericCode = numericCode.getAll("numericCode")[0]
+        // console.log(numericCode);
+        const getContries = (keyWord, region) => {
+            fetch('./data.json').then(res => res.json()).then(data => {
+
+                data.forEach((country, index) => {
+                    if (country.numericCode == numericCode) {
+                        let bordersContriesName = [];
+                        console.log(country);
+                        country.borders ? country.borders.forEach(border => {
+                            let i = 0;
+                            let countryName = '';
+                            while (data[i].alpha3Code != border) {
+                                countryName = data[i].name;
+                                ++i;
+                            }
+
+                            bordersContriesName.push(`<p>${countryName}</p>`);
+                        }) : null
+                        console.log(bordersContriesName);
+                        const contryDetail = `
+                        <div class="container_0">
+        <img class="flag" src="${country.flag}" alt="${country.name} FLAG">
+        <div class="details_1">
+            <div class="details_0">
+                    <h2 class="cd-name"> ${country.name}</h2>
+                    <div class="details_2">
+                <div>
+<p><span>nativeName:</span> ${country.nativeName}</p>
+                    <p><span>Population: </span>${country.population}</p>
+<p><span>Capital:</span> ${country.capital}</p>
+<p><span>Subregion:</span> ${country.subregion}</p>
+<p><span>Region:</span> ${country.region}</p>
+                </div>
+                <div>
+                    <p><span>Top Level Domain:</span>${country.topLevelDomain[0]}</p>
+                    <p><span>Currencies:</span>${country.currencies[0].code}</p>
+                    <p><span>Languages:</span>${country.languages[0].name}</p>
+                    
+                </div>
+            </div> 
+</div>
+            <div class="border-contries">
+            <div>
+               <span>Border Contries:</span> ${country.borders ? bordersContriesName.join('') : "No Borders"}
+                </div>
+        </div>
+        </div>
+       
+    </div>
+    `;
+
+                        document.getElementsByTagName('main')[0].insertAdjacentHTML('beforeend', contryDetail)
+                    }
+                })
+            })
+        }
+        getContries();
+    </script>
+</body>
+
+</html>
